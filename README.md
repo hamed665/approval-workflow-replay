@@ -1,5 +1,7 @@
 # GateFlow
 
+**Created and maintained by [Hamed Minaei](https://github.com/hamed665).**
+
 **Replay a dependency graph with explicit approvals and auditable decisions.**
 
 A dependency-free JavaScript engineering workbench by Hamed Minaei.
