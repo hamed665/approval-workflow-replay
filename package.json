@@ -1,0 +1,17 @@
+{
+  "name": "approval-workflow-replay",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Replay a dependency graph with explicit approvals and auditable decisions.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "demo": "node scripts/demo.mjs"
+  },
+  "license": "MIT",
+  "author": "Hamed Minaei"
+}

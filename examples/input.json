@@ -1,0 +1,56 @@
+{
+  "steps": [
+    {
+      "id": "prepare",
+      "kind": "task",
+      "needs": []
+    },
+    {
+      "id": "review",
+      "kind": "approval",
+      "reviewer": "maintainer",
+      "needs": [
+        "prepare"
+      ]
+    },
+    {
+      "id": "release",
+      "kind": "task",
+      "needs": [
+        "review"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-1",
+      "actor": "worker",
+      "step": "prepare",
+      "action": "complete"
+    },
+    {
+      "id": "evt-2",
+      "actor": "worker",
+      "step": "release",
+      "action": "complete"
+    },
+    {
+      "id": "evt-3",
+      "actor": "guest",
+      "step": "review",
+      "action": "approve"
+    },
+    {
+      "id": "evt-4",
+      "actor": "maintainer",
+      "step": "review",
+      "action": "approve"
+    },
+    {
+      "id": "evt-5",
+      "actor": "worker",
+      "step": "release",
+      "action": "complete"
+    }
+  ]
+}

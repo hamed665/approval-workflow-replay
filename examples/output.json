@@ -1,0 +1,104 @@
+{
+  "summary": [
+    {
+      "label": "Steps",
+      "value": 3
+    },
+    {
+      "label": "Accepted events",
+      "value": 3
+    },
+    {
+      "label": "Rejected events",
+      "value": 2
+    }
+  ],
+  "note": "Replay validates transitions and configured reviewer IDs. Identity authentication and executing tasks belong to the host service; this demo does neither.",
+  "columns": [
+    "step",
+    "kind",
+    "depends_on",
+    "state",
+    "reviewer"
+  ],
+  "rows": [
+    {
+      "step": "prepare",
+      "kind": "task",
+      "depends_on": "—",
+      "state": "completed",
+      "reviewer": "—"
+    },
+    {
+      "step": "review",
+      "kind": "approval",
+      "depends_on": "prepare",
+      "state": "approved",
+      "reviewer": "maintainer"
+    },
+    {
+      "step": "release",
+      "kind": "task",
+      "depends_on": "review",
+      "state": "completed",
+      "reviewer": "—"
+    }
+  ],
+  "states": {
+    "prepare": "completed",
+    "review": "approved",
+    "release": "completed"
+  },
+  "audit": [
+    {
+      "id": "evt-1",
+      "actor": "worker",
+      "step": "prepare",
+      "action": "complete",
+      "accepted": true,
+      "reason": "ACCEPTED",
+      "before": "ready",
+      "after": "completed"
+    },
+    {
+      "id": "evt-2",
+      "actor": "worker",
+      "step": "release",
+      "action": "complete",
+      "accepted": false,
+      "reason": "STEP_NOT_READY",
+      "before": "waiting",
+      "after": "waiting"
+    },
+    {
+      "id": "evt-3",
+      "actor": "guest",
+      "step": "review",
+      "action": "approve",
+      "accepted": false,
+      "reason": "REVIEWER_MISMATCH",
+      "before": "ready",
+      "after": "ready"
+    },
+    {
+      "id": "evt-4",
+      "actor": "maintainer",
+      "step": "review",
+      "action": "approve",
+      "accepted": true,
+      "reason": "ACCEPTED",
+      "before": "ready",
+      "after": "approved"
+    },
+    {
+      "id": "evt-5",
+      "actor": "worker",
+      "step": "release",
+      "action": "complete",
+      "accepted": true,
+      "reason": "ACCEPTED",
+      "before": "ready",
+      "after": "completed"
+    }
+  ]
+}
